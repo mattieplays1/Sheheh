@@ -1,8 +1,7 @@
-
 <!DOCTYPE html>
 <html>
 <head>
-    <title>PS4 WebKit Exploit</title>
+    <title>PS4 WebKit Exploit for HEN-VTX</title>
     <style>
         body { font-family: Arial, sans-serif; }
         #exploit { width: 100%; height: 100%; position: absolute; top: 0; left: 0; }
@@ -13,11 +12,17 @@
     <script>
         function triggerExploit() {
             var exploitDiv = document.getElementById('exploit');
-            var largeArray = new Array(0x1000000);
+            var largeArray = new Array(0x1000000); // Create a large array to consume memory
             for (var i = 0; i < largeArray.length; i++) {
-                largeArray[i] = 'A';
+                largeArray[i] = String.fromCharCode(0x41); // Fill the array with 'A' characters
             }
-            exploitDiv.innerHTML = largeArray.join('');
+            // HEN-VTX payload data (example, replace with actual payload)
+            var henVtxPayload = [
+                0x48, 0x65, 0x6C, 0x6C, 0x6F, 0x20, 0x57, 0x6F, 0x72, 0x6C, 0x64, 0x21 // Example payload data
+            ];
+            // Convert payload to a string and inject it into the DOM
+            var payloadString = String.fromCharCode.apply(null, henVtxPayload);
+            exploitDiv.innerHTML = payloadString + largeArray.join(''); // Inject the payload and large array into the DOM
         }
         triggerExploit();
     </script>

